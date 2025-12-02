@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View, TextInput,  ScrollView , FlatList} from 'react-native';
+import { Pressable, StyleSheet, Text, View, TextInput,  ScrollView } from 'react-native';
+import TodoRow from './components/TodoRow';
+import { TodoData } from './data/todoData';
 
 let nextId = 0
 
 export default function App() {
 
   const [newTask, addNewTask] = useState("")
-  const [tasks, setTasks] = useState<Array<String>>([])
+  const [tasks, setTasks] = useState<Array<TodoData>>([])
 
   function addTask() {
 
@@ -18,7 +20,7 @@ export default function App() {
     setTasks(
       [
         ...tasks,
-          newTask
+        {id: nextId, task: newTask}
       ]
     )
     
@@ -48,7 +50,7 @@ export default function App() {
       <ScrollView>
         {
           tasks.map(task => (
-            <Text key={tasks.indexOf(task)}>{task}</Text>
+            <Text key={task.id}>{task.task}</Text>
           ))
         }
       </ScrollView>
