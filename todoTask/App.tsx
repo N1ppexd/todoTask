@@ -65,27 +65,33 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 64,
     backgroundColor: '#ffffffff',
-    alignItems: 'center',
+    alignItems: 'baseline',
     justifyContent: 'center',
   },
   taskInput : {
-    margin: 40,
-    color : "#fff",
-    backgroundColor: '#ff6363ff',
-    alignItems: 'center',
+    marginTop: 20,
+    color : "#000000ff",
+    backgroundColor: '#c8c8c8ff',
+    alignItems: 'baseline',
     justifyContent: 'center',
     width: 200,
+    height: 42,
+    fontSize: 24,
     padding: 5,
   },
   submitButton : {
-    margin: 10,
+    marginTop: 10,
     padding: 5,
     backgroundColor: '#ff6868ff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 100,
+    height: 40
   },
   submitText:{
     color: "#fff",
+    fontSize: 18,
   }
 });

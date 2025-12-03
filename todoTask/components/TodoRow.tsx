@@ -23,13 +23,19 @@ const TodoRow = ({ id, task, onDelete } : TodoRowProps) => {
 const styles = StyleSheet.create({
     row:{
         flexDirection:'row',
+        marginTop:10
     },
     deleteButton:{
         backgroundColor:'#ffa5a5ff',
-        margin: 10
+        marginLeft: 10,
+        padding: 5,
+        alignItems:'center',
+        justifyContent:'center'
     },
     deleteButtonText:{
-        color:'#fff'
+        color:'#fff',
+        alignItems:'center',
+        justifyContent:'center'
     }
 })
 
