@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 type TodoRowProps = {
     id: number,
@@ -10,11 +11,11 @@ type TodoRowProps = {
 const TodoRow = ({ id, task, onDelete } : TodoRowProps) => {
     return (
         <View style={styles.row}>
-            <Text>{task}</Text>
+            <Text style={styles.taskText}>{task}</Text>
             <Pressable
             style={styles.deleteButton}
             onPress={() => onDelete(id)}>
-                <Text style={styles.deleteButtonText}>X</Text>
+                <AntDesign name="close" size={24} color="black" />
             </Pressable>
         </View>
     )
@@ -32,10 +33,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center'
     },
-    deleteButtonText:{
-        color:'#fff',
-        alignItems:'center',
-        justifyContent:'center'
+    taskText:{
+        color:'#000000ff',
+        fontSize: 24
     }
 })
 

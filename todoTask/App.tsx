@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, TextInput,  ScrollView } from 'react-native';
 import TodoRow from './components/TodoRow';
 import { TodoData } from './data/todoData';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 let nextId = 0
 
@@ -34,21 +35,22 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <TextInput 
+      <View style={styles.addTaskContainer}>
+        <TextInput 
         style={styles.taskInput}
         placeholder='Enter a task'
         value={newTask}
         onChangeText={addNewTask}
-      />
+        />
       
-      <Pressable
+        <Pressable
         style={styles.submitButton}
         onPress={addTask}>
-          <Text style={styles.submitText}>Submit</Text>
-      </Pressable>
-      <StatusBar style="auto" />
-
+          <AntDesign name="enter" size={24} color="black" />
+        </Pressable>
+      </View>
       
+      <StatusBar style="auto" />
 
       <ScrollView>
         {
@@ -65,30 +67,32 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 64,
+    margin: 24,
     backgroundColor: '#ffffffff',
     alignItems: 'baseline',
     justifyContent: 'center',
   },
+  addTaskContainer:{
+    marginTop: 30,
+    flexDirection:'row',
+    height: 42,
+  },
   taskInput : {
-    marginTop: 20,
     color : "#000000ff",
     backgroundColor: '#c8c8c8ff',
     alignItems: 'baseline',
     justifyContent: 'center',
     width: 200,
-    height: 42,
     fontSize: 24,
     padding: 5,
   },
   submitButton : {
-    marginTop: 10,
     padding: 5,
+    marginLeft: 5,
     backgroundColor: '#ff6868ff',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 100,
-    height: 40
+    width:64,
   },
   submitText:{
     color: "#fff",
