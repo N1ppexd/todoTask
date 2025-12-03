@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   todoTitle:{
     marginTop:20,
-    fontSize: 32
+    fontSize: 32,
   },
   tasksTitle:{
     marginTop:20,
