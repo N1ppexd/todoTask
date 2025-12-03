@@ -28,9 +28,12 @@ export default function App() {
     addNewTask("")
   }
 
+  function deleteTask(id: number) {
+    setTasks(prev => prev.filter(t => t.id !== id))
+  }
+
   return (
     <View style={styles.container}>
-      <Text>{nextId.toString()}</Text>
       <TextInput 
         style={styles.taskInput}
         placeholder='Enter a task'
@@ -50,7 +53,7 @@ export default function App() {
       <ScrollView>
         {
           tasks.map(task => (
-            <Text key={task.id}>{task.task}</Text>
+            <TodoRow key={task.id} id={task.id} task={task.task} onDelete={deleteTask} />
           ))
         }
       </ScrollView>
