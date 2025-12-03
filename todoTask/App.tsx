@@ -35,6 +35,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+
+      <Text style={styles.todoTitle}>TODO</Text>
+
       <View style={styles.addTaskContainer}>
         <TextInput 
         style={styles.taskInput}
@@ -51,6 +54,8 @@ export default function App() {
       </View>
       
       <StatusBar style="auto" />
+
+      <Text style={styles.tasksTitle}>Tasks:</Text>
 
       <ScrollView>
         {
@@ -72,8 +77,16 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
     justifyContent: 'center',
   },
+  todoTitle:{
+    marginTop:20,
+    fontSize: 32
+  },
+  tasksTitle:{
+    marginTop:20,
+    fontSize:28,
+  },
   addTaskContainer:{
-    marginTop: 30,
+    marginTop: 10,
     flexDirection:'row',
     height: 42,
   },
