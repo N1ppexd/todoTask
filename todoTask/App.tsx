@@ -1,16 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, TextInput,  ScrollView } from 'react-native';
 import TodoRow from './components/TodoRow';
 import { TodoData } from './data/todoData';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import * as SQLite from 'expo-sqlite';
+
 
 let nextId = 0
 
+type Task = {
+  id: number,
+  task: string
+}
+
+
+
 export default function App() {
 
-  const [newTask, addNewTask] = useState("")
+  const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null)
+
+  const [newTask, addNewTask] = useState<string>("")
   const [tasks, setTasks] = useState<Array<TodoData>>([])
+
+  useEffect(() => {
+    const initDb = async() => {
+      const database = await SQLite.openDatabaseAsync('todos.db')
+      setDb(database)
+
+      await database.execAsync(
+        `CREATE TABLE IF NOT EXISTS (tasks) (
+          id INTEGER PRIMARY KEY AUTO INCREMENT,
+          task TEXT NOT NULL
+        )`
+      )
+    }
+    initDb()
+  },[])
 
   function addTask() {
 
