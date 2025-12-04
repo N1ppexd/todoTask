@@ -27,28 +27,26 @@ export default function App() {
           task TEXT NOT NULL
         )`
       )
+
+      loadTasks(database)
     }
     initDb()
   },[])
+
+  const loadTasks = async(database: SQLite.SQLiteDatabase) => {
+    const result = await database.getAllAsync<TodoData>('SELECT * FROM tasks ORDER BY id DESC')
+
+    setTasks(result)
+  }
 
   const addTask = async() => {
 
     if(newTask==='' || !newTask.trim() || !db) return
 
-    //nextId++
-
     await db.runAsync(`INSERT INTO tasks (task) VALUES (?)`, newTask)
 
-    /*
-    setTasks(
-      [
-        ...tasks,
-        {id: nextId, task: newTask}
-      ]
-    )*/
-    
-    
     addNewTask("")
+    loadTasks(db)
   }
 
   const deleteTask = async(id: number) => {
