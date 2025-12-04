@@ -9,13 +9,6 @@ import * as SQLite from 'expo-sqlite';
 
 let nextId = 0
 
-type Task = {
-  id: number,
-  task: string
-}
-
-
-
 export default function App() {
 
   const [db, setDb] = useState<SQLite.SQLiteDatabase | null>(null)
@@ -38,25 +31,30 @@ export default function App() {
     initDb()
   },[])
 
-  function addTask() {
+  const addTask = async() => {
 
-    if(newTask==='') return
+    if(newTask==='' || !newTask.trim() || !db) return
 
-    nextId++
+    //nextId++
 
+    await db.runAsync(`INSERT INTO tasks (task) VALUES (?)`, newTask)
+
+    /*
     setTasks(
       [
         ...tasks,
         {id: nextId, task: newTask}
       ]
-    )
+    )*/
     
     
     addNewTask("")
   }
 
-  function deleteTask(id: number) {
-    setTasks(prev => prev.filter(t => t.id !== id))
+  const deleteTask = async(id: number) => {
+
+    await db?.runAsync('DELETE * FROM tasks WHERE id=(?)', id)
+    //setTasks(prev => prev.filter(t => t.id !== id))
   }
 
   return (
